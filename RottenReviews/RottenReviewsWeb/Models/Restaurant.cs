@@ -23,9 +23,12 @@ namespace RottenReviewsWeb.Models
         public string Country { get; set; }
 
         [DataType(DataType.PostalCode)]
+        [RegularExpression(@"^\d{5}(?:[-\s]\d{4})?$", ErrorMessage = "Invalid Zipcode(AreaCode")]
+        [Required(ErrorMessage = "Zipcode(AreaCode is Required")]
         public string Zipcode { get; set; }
 
         [Phone]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$", ErrorMessage = "Invalid Phone")]
         public string Phone { get; set; }
 
         [EmailAddress]

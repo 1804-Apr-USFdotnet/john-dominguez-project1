@@ -24,7 +24,8 @@ namespace RottenReviewsWeb
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/addons/normalize.css",
+                      "~/Content/bootstrap-minty.min.css",
                       "~/Content/site.css"));
         }
     }
