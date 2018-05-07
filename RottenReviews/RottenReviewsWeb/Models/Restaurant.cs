@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using Microsoft.Ajax.Utilities;
 
 namespace RottenReviewsWeb.Models
 {
     [Table("Restaurant", Schema = "Restaurant")]
-    public class Restaurant
+    public class Restaurant : IComparable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -46,12 +47,24 @@ namespace RottenReviewsWeb.Models
 
         //Not Mapped
         [NotMapped]
-        public double Rating
+        public double? Rating
         {
             get
             {
+                if (Reviews.Count == 0) return null;
                 return Reviews.Sum(x => x.Rating);
             }
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            Restaurant otherTemperature = obj as Restaurant;
+            if (otherTemperature != null)
+                return this.Name.CompareTo(otherTemperature.Name);
+            else
+                throw new ArgumentException("Object is not a Restaurant");
         }
     }
 }

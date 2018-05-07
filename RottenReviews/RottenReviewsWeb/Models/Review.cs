@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace RottenReviewsWeb.Models
 {
     [Table("Review", Schema = "Restaurant")]
-    public class Review
+    public class Review : IComparable
     {
         //Primary Key
         [Key]
@@ -28,5 +28,18 @@ namespace RottenReviewsWeb.Models
         //DateTime
         public DateTime Created { get; set; }
         public DateTime? Modified { get; set; }
+
+        //
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            Restaurant otherTemperature = obj as Restaurant;
+            if (otherTemperature != null)
+                return this.Created.CompareTo(otherTemperature.Created);
+            else
+                throw new ArgumentException("Object is not a Review");
+        }
     }
+    
 }
