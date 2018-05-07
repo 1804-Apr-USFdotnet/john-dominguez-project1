@@ -22,6 +22,9 @@ namespace RottenReviewsWeb.Models
         [DataType(DataType.MultilineText)]
         public string Comment { get; set; }
 
+        [Required(ErrorMessage = "Username is Required")]
+        public string Author { get; set; }
+
         //Foreign Key
         public virtual Restaurant Restaurant { get; set; }
 

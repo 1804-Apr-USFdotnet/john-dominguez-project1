@@ -172,6 +172,10 @@
     <Compile Include="Migrations\201805071559438_EditRestaurantValidationsZipcode.Designer.cs">
       <DependentUpon>201805071559438_EditRestaurantValidationsZipcode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805071923143_EditReviewValidationsAuthor.cs" />
+    <Compile Include="Migrations\201805071923143_EditReviewValidationsAuthor.Designer.cs">
+      <DependentUpon>201805071923143_EditReviewValidationsAuthor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Review.cs" />
@@ -293,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805071559438_EditRestaurantValidationsZipcode.resx">
       <DependentUpon>201805071559438_EditRestaurantValidationsZipcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071923143_EditReviewValidationsAuthor.resx">
+      <DependentUpon>201805071923143_EditReviewValidationsAuthor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
