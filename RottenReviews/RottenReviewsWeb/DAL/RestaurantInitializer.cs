@@ -21,8 +21,8 @@ namespace RottenReviewsWeb.DAL
                     Zipcode = "33604",
                     Country = "US",
                     Phone = "(813) 234-3710",
-                    Email = "",
-                    Website = "places.singleplatform.com"
+                    Email = "Refinery@Refinery.com",
+                    Website = "http://places.singleplatform.com"
                 },
                 new Restaurant
                 {
@@ -33,8 +33,8 @@ namespace RottenReviewsWeb.DAL
                     Zipcode = "33602",
                     Country = "US",
                     Phone = "(813) 999-4952",
-                    Email = "",
-                    Website = "ulele.com"
+                    Email = "Ulele@Ulele.com",
+                    Website = "http://ulele.com"
                 },
                 new Restaurant
                 {
@@ -45,8 +45,8 @@ namespace RottenReviewsWeb.DAL
                     Zipcode = "33606",
                     Country = "US",
                     Phone = "(813) 254-5373",
-                    Email = "",
-                    Website = "miseonline.com"
+                    Email = "Mise@Mise.com",
+                    Website = "http://miseonline.com"
                 },
                 new Restaurant
                 {
@@ -57,14 +57,12 @@ namespace RottenReviewsWeb.DAL
                     Zipcode = "33602",
                     Country = "US",
                     Phone = "(813) 253-0222",
-                    Email = "",
-                    Website = "oxfordexchange.com"
+                    Email = "Oxford@Oxford.com",
+                    Website = "http://oxfordexchange.com"
                 }
             };
-
             restaurants.ForEach(r => context.Restaurants.Add(r));
-            context.SaveChanges();
-            
+            context.SaveChanges();  
         }
     }
 }

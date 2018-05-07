@@ -47,23 +47,23 @@ namespace RottenReviewsWeb.DAL
             return base.Set<TEntity>();
         }
 
-        static void Main(string[] args)
-        {
-            Restaurant restaurant = new Restaurant
-            {
-                Name = "The Refinery",
-                Street = "5910 N Florida Ave",
-                City = "Tampa",
-                State = "FL",
-                Zipcode = "33604",
-                Country = "US",
-                Phone = "813-234-3710",
-                Email = "test@test.com",
-                Website = "http://www.places.singleplatform.com"
-            };
-            RestaurantContext db = new RestaurantContext();
-            db.Restaurants.Add(restaurant);
-            db.SaveChanges();
-        }
+//        static void Main(string[] args)
+//        {
+//            Restaurant restaurant = new Restaurant
+//            {
+//                Name = "The Refinery",
+//                Street = "5910 N Florida Ave",
+//                City = "Tampa",
+//                State = "FL",
+//                Zipcode = "33604",
+//                Country = "US",
+//                Phone = "813-234-3710",
+//                Email = "test@test.com",
+//                Website = "http://www.places.singleplatform.com"
+//            };
+//            RestaurantContext db = new RestaurantContext();
+//            db.Restaurants.Add(restaurant);
+//            db.SaveChanges();
+//        }
     }
 }
