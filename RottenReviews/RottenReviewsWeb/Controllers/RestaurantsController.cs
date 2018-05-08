@@ -16,6 +16,7 @@ namespace RottenReviewsWeb.Controllers
         // GET: Restaurants
         public ActionResult Index(int sortType = 0, string sortBy = "Rating")
         {
+            ViewBag.TopThree = Sorting.Top(Sorting.SortDescending(db.Restaurants.ToList(), "Rating"), 3);
             return View(SortedList(sortType, sortBy));
         }
 

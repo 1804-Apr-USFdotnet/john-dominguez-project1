@@ -68,15 +68,5 @@ namespace RottenReviewsWeb.Models
             else
                 throw new ArgumentException("Object is not a Restaurant");
         }
-//
-//        public static IEnumerable<string> RestaurantProperties()
-//        {
-//            var properties = typeof(Restaurant).GetProperties();
-//            var prop = new List<string>();
-//            foreach (var VARIABLE in prop)
-//            {
-//                
-//            }
-//        }
     }
 }

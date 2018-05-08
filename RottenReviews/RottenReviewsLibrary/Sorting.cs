@@ -21,7 +21,7 @@ namespace RottenReviewsLibrary
             return list.OrderByDescending(x => prop.GetValue(x)).ToList();
         }
 
-        public static List<T> Top<T>(List<T> list, int count, string attribute)
+        public static List<T> Top<T>(List<T> list, int count)
         {
             return list.Take(count).ToList();
         }

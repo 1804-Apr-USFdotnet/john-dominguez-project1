@@ -13,26 +13,33 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@{
-    var properties = typeof(Restaurant).GetProperties();
-}
-
-@Html.DropDownListFor(m => properties, properties.ToList())
-@Html.ValidationMessageFor(m => m.SelectedFlavorId)
-<input type="submit" value="Submit" />
+<div class="row my-5">
+    @foreach (var restaurant in ViewBag.TopThree)
+    {
+        <div class="col-sm-4">
+            <div class="card  border-primary">
+                <div class="card-body">
+                    <h5 class="card-title">@restaurant.Name</h5>
+                    <p class="card-text">@restaurant.Rating Stars</p>
+                    @Html.ActionLink("Details", "Details", new { id = restaurant.ID }, new {@class="btn btn-outline-primary"})
+                </div>
+            </div>
+        </div>
+    }
+</div>
 
 <table class="table">
     <tr>
         @{
-            var properties2 = typeof(Restaurant).GetProperties();
+            var properties = typeof(Restaurant).GetProperties();
         }
-        @foreach (var property in properties2)
+        @foreach (var property in properties)
         {
             <th>
                 <p>@property.Name</p>
                 <p class="text-center">
-                    @Html.ActionLink("▲", "Index", new { sortType = 1, sortBy = property.Name }, null)
-                    @Html.ActionLink("▼", "Index", new { sortType = 2, sortBy = property.Name }, null)
+                    @Html.ActionLink("▲", "Index", new {sortType = 1, sortBy = property.Name}, null)
+                    @Html.ActionLink("▼", "Index", new {sortType = 2, sortBy = property.Name}, null)
                 </p>
             </th>
         }
@@ -40,7 +47,7 @@
     </tr>
 
     @foreach (var item in Model)
-    {
+     {
         <tr>
             @foreach (var property in properties)
             {
@@ -48,12 +55,12 @@
                     @(property.Name == "Reviews" ? item.Reviews.Count : property.GetValue(item))
                 </td>
             }
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                @Html.ActionLink("Details", "Details", new { id = item.ID })
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
     }
 
 </table>
