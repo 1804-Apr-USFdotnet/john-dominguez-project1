@@ -5,29 +5,39 @@
     ViewBag.Title = "Index";
 }
 
-
-
 <h2 class="display-4">Restaurants</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new {@class = "btn btn-outline-primary"})
 </p>
 
-<div class="row my-5">
+<div class="row my-5 align-items-center">
     @foreach (var restaurant in ViewBag.TopThree)
     {
-        <div class="col-sm-4">
+        <div class="col-sm-4"> 
             <div class="card  border-primary">
                 <div class="card-body">
                     <h5 class="card-title">@restaurant.Name</h5>
-                    <p class="card-text">@restaurant.Rating Stars</p>
-                    @Html.ActionLink("Details", "Details", new { id = restaurant.ID }, new {@class="btn btn-outline-primary"})
+                    <h5 class="card-text">
+                        @for (var i = 0; i < restaurant.Rating; i++)
+                        {
+                            <span class="text-primary">★</span>
+                        }
+                    </h5>
+                    @Html.ActionLink("Details", "Details", new { id = restaurant.ID }, new {@class="btn btn-outline-primary mt-3"})
                 </div>
             </div>
         </div>
     }
 </div>
 
+
+@{
+    var ignoreProperties = new List<string>
+    {
+        "Reviews", "Modified", "Created", "Website", "Country", "State"
+    };
+}
 <table class="table">
     <tr>
         @{
@@ -35,31 +45,32 @@
         }
         @foreach (var property in properties)
         {
-            <th>
-                <p>@property.Name</p>
-                <p class="text-center">
-                    @Html.ActionLink("▲", "Index", new {sortType = 1, sortBy = property.Name}, null)
-                    @Html.ActionLink("▼", "Index", new {sortType = 2, sortBy = property.Name}, null)
-                </p>
-            </th>
+            if (!ignoreProperties.Contains(@property.Name))
+            {
+                <th>
+                    <p>
+                        @property.Name
+                        @Html.ActionLink("▲", "Index", new { sortType = 1, sortBy = property.Name }, null)
+                        @Html.ActionLink("▼", "Index", new { sortType = 2, sortBy = property.Name }, null)
+                    </p>
+                </th>
+            }
+            
         }
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
      {
-        <tr>
+        <tr onclick="location.href = '@(Url.Action("Details", new { id = item.ID }))'">
             @foreach (var property in properties)
             {
-                <td>
-                    @(property.Name == "Reviews" ? item.Reviews.Count : property.GetValue(item))
-                </td>
+                if (!ignoreProperties.Contains(@property.Name))
+                {
+                    <td>
+                        @(property.Name == "Reviews" ? item.Reviews.Count : property.GetValue(item))
+                    </td>
+                }
             }
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-            @Html.ActionLink("Details", "Details", new { id = item.ID })
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
     </tr>
     }
 

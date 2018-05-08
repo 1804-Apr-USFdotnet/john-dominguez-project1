@@ -89,7 +89,7 @@ namespace RottenReviewsWeb.Controllers
             {
                 db.Entry(review).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Restaurants", new { id = review.RestaurantID});
             }
             ViewBag.RestaurantID = new SelectList(db.Restaurants, "ID", "Name", review.RestaurantID);
             return View(review);

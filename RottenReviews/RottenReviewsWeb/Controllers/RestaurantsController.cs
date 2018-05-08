@@ -84,7 +84,7 @@ namespace RottenReviewsWeb.Controllers
             {
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Restaurants", new {id = restaurant.ID});
             }
             return View(restaurant);
         }

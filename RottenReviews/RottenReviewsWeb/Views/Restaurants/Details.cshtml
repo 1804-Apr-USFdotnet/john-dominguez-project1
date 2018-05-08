@@ -7,21 +7,31 @@
 
 <div class="text-center my-5">
     <h2 class="display-3 text-uppercase">@Html.DisplayFor(model => model.Name)</h2>
-    <h3>@Model.Rating Stars</h3>
+    <h3>
+        @for (var i = 0; i < Model.Rating; i++)
+        {
+            <span class="text-primary">★</span>
+        }
+
+
+    </h3>
 
     <p>
         @Model.Street,<br>
         @Model.City, @Model.State, @Model.Zipcode
     </p>
     <p>✆ @Model.Phone • 📧 @Model.Email </p>
-    <p><small>Last modified on @Model.Modified</small></p>
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-primary" })
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-outline-secondary" })
+    <p>
+        <small>Last modified on @Model.Modified</small>
+    </p>
+    @Html.ActionLink("Back to List", "Index", null, new {@class = "btn btn-outline-primary"})
+    @Html.ActionLink("Edit", "Edit", new {id = Model.ID}, new {@class = "btn btn-outline-secondary"})
+    @Html.ActionLink("Delete", "Delete", new {id = Model.ID}, new {@class = "btn btn-danger"})
 </div>
 
 
 <h2>Reviews</h2>
-@Html.ActionLink("Add Review", "Create", "Reviews", new { id = Model.ID }, new {@class="btn btn-outline-primary mb-4"})
+@Html.ActionLink("Add Review", "Create", "Reviews", new {id = Model.ID}, new {@class = "btn btn-outline-primary mb-4"})
 
 @foreach (var review in Model.Reviews)
 {
@@ -39,8 +49,8 @@
                     </footer>
                 </blockquote>
             </p>
-            @Html.ActionLink("Edit", "Edit", "Reviews", new { id = review.ID }, new { @class = "btn btn-outline-primary" })
-            @Html.ActionLink("Delete", "Delete", "Reviews", new { id = review.ID }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Edit", "Edit", "Reviews", new {id = review.ID}, new {@class = "btn btn-outline-primary"})
+            @Html.ActionLink("Delete", "Delete", "Reviews", new {id = review.ID}, new {@class = "btn btn-danger"})
         </div>
     </div>
 }
