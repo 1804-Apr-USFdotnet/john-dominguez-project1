@@ -54,7 +54,7 @@ namespace RottenReviewsWeb.Models
             get
             {
                 if (Reviews.Count == 0) return null;
-                return Reviews.Sum(x => x.Rating);
+                return Reviews.Sum(x => x.Rating) / Reviews.Count;
             }
         }
 
