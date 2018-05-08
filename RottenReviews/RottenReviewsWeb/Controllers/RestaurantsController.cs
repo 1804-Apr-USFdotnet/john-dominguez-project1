@@ -126,7 +126,7 @@ namespace RottenReviewsWeb.Controllers
         // GET: Restaurants
         public ActionResult Search(string keyword)
         {
-            return View("SearchResult", db.Restaurants.WhereAtLeastOneProperty((string s) => s.Contains(keyword) ));
+            return View("SearchResult", db.Restaurants.WhereAtLeastOneProperty((string s) => s.Contains(keyword)).ToList());
         }
 
         [NonAction]

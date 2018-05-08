@@ -8,19 +8,17 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav mr-auto">
-                @Html.ActionLink("Restaurants", "Index", "Restaurants", null, new {@class = "nav-item nav-link active"})
-                @Html.ActionLink("About", "About", "Home", null, new {@class = "nav-item nav-link"})
-                @Html.ActionLink("Contact", "Contact", "Home", null, new {@class = "nav-item nav-link"})
+                @Html.ActionLink("Restaurants", "Index", "Restaurants", null, new { @class = "nav-item nav-link active" })
+                @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-item nav-link" })
             </div>
-            <form class="form-inline my-2 my-lg-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-light text-primary" type="submit">Search</button>
-                        @Html.ActionLink("Restaurants", "Search", "Restaurants", new { keyword = }, new {@class = "nav-item nav-link active"})
-                    </div>
-                </div>
-            </form>
+            @using (Html.BeginForm("Search", "Restaurants", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" }))
+             {
+                 @Html.TextBox("keyword", "", new {@class = "form-control" })
+                 <div class="input-group-append">
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                 </div>
+              }
         </div>
-    </div>
+        </div>
 </nav>
