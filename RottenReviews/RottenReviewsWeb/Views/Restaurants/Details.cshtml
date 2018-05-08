@@ -12,8 +12,6 @@
         {
             <span class="text-primary">★</span>
         }
-
-
     </h3>
 
     <p>
@@ -32,25 +30,36 @@
 
 <h2>Reviews</h2>
 @Html.ActionLink("Add Review", "Create", "Reviews", new {id = Model.ID}, new {@class = "btn btn-outline-primary mb-4"})
+<div class="row">
+    @foreach (var review in Model.Reviews)
+    {
+        string borderColor = (review.Rating > 3) ? "border-primary" : "border-secondary";
 
-@foreach (var review in Model.Reviews)
-{
-    <div class="card w-75">
-        <div class="card-body">
-            <h5 class="card-title">@review.Rating Stars</h5>
-            <p>
-                <blockquote>
-                    @review.Comment
-                    <footer class="blockquote-footer">
-                        @review.Author
-                        <cite title="Post Time">
-                            @review.Created
-                        </cite>
-                    </footer>
-                </blockquote>
-            </p>
-            @Html.ActionLink("Edit", "Edit", "Reviews", new {id = review.ID}, new {@class = "btn btn-outline-primary"})
-            @Html.ActionLink("Delete", "Delete", "Reviews", new {id = review.ID}, new {@class = "btn btn-danger"})
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card text-center @borderColor">
+                <div class="card-body ">
+                    <h5 class="card-title">
+                        @for (var i = 0; i < @review.Rating; i++)
+                        {
+                            <span class="text-primary">★</span>
+                         }
+                    </h5>
+
+                    <p class="card-text text-center">
+                        <blockquote class="blockquote text-center">
+                            @review.Comment
+                            <footer class="blockquote-footer my-2">
+                                @review.Author
+                                <cite title="Post Time">
+                                </cite>
+                            </footer>
+                        </blockquote>
+                    </p>
+                    @Html.ActionLink("Edit", "Edit", "Reviews", new { id = review.ID }, new { @class = "btn btn-outline-primary" })
+                    @Html.ActionLink("Delete", "Delete", "Reviews", new { id = review.ID }, new { @class = "btn btn-danger" })
+                    <small class="d-block mt-3">Posted on @review.Modified</small>
+                </div>
+            </div>
         </div>
-    </div>
-}
+    }
+</div>

@@ -12,6 +12,7 @@ namespace RottenReviewsWeb.Controllers
     public class RestaurantsController : Controller
     {
         private RestaurantContext db = new RestaurantContext();
+        private static NLog.Logger logger;
 
         // GET: Restaurants
         public ActionResult Index(int sortType = 0, string sortBy = "Rating")
@@ -52,6 +53,7 @@ namespace RottenReviewsWeb.Controllers
             {
                 db.Restaurants.Add(restaurant);
                 db.SaveChanges();
+                logger.Info($"Added Restaurant: {restaurant.Name} ");
                 return RedirectToAction("Index");
             }
 
@@ -84,6 +86,7 @@ namespace RottenReviewsWeb.Controllers
             {
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
+                logger.Info($"Edit Restaurant: {restaurant.Name} ");
                 return RedirectToAction("Details", "Restaurants", new {id = restaurant.ID});
             }
             return View(restaurant);
@@ -112,6 +115,7 @@ namespace RottenReviewsWeb.Controllers
             Restaurant restaurant = db.Restaurants.Find(id);
             db.Restaurants.Remove(restaurant);
             db.SaveChanges();
+            logger.Info($"Delete Restaurant: {restaurant.Name} ");
             return RedirectToAction("Index");
         }
 
