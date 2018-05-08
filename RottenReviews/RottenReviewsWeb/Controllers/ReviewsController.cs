@@ -18,7 +18,8 @@ namespace RottenReviewsWeb.Controllers
         // GET: Reviews
         public ActionResult Index()
         {
-            return View(db.Reviews.ToList());
+            var reviews = db.Reviews.Include(r => r.Restaurant);
+            return View(reviews.ToList());
         }
 
         // GET: Reviews/Details/5
@@ -39,6 +40,7 @@ namespace RottenReviewsWeb.Controllers
         // GET: Reviews/Create
         public ActionResult Create()
         {
+            ViewBag.RestaurantID = new SelectList(db.Restaurants, "ID", "Name");
             return View();
         }
 
@@ -47,15 +49,16 @@ namespace RottenReviewsWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Rating,Comment,Created,Modified")] Review review)
+        public ActionResult Create([Bind(Include = "ID,Rating,Comment,Author,RestaurantID,Created,Modified")] Review review)
         {
             if (ModelState.IsValid)
             {
                 db.Reviews.Add(review);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Restaurants", new {id = review.RestaurantID });
             }
 
+            ViewBag.RestaurantID = new SelectList(db.Restaurants, "ID", "Name", review.RestaurantID);
             return View(review);
         }
 
@@ -71,6 +74,7 @@ namespace RottenReviewsWeb.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.RestaurantID = new SelectList(db.Restaurants, "ID", "Name", review.RestaurantID);
             return View(review);
         }
 
@@ -79,7 +83,7 @@ namespace RottenReviewsWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Rating,Comment,Created,Modified")] Review review)
+        public ActionResult Edit([Bind(Include = "ID,Rating,Comment,Author,RestaurantID,Created,Modified")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace RottenReviewsWeb.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.RestaurantID = new SelectList(db.Restaurants, "ID", "Name", review.RestaurantID);
             return View(review);
         }
 

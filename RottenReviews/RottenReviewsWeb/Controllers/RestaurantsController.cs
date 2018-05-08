@@ -1,9 +1,11 @@
 ﻿using RottenReviewsWeb.DAL;
 using RottenReviewsWeb.Models;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using RottenReviewsLibrary;
 
 namespace RottenReviewsWeb.Controllers
 {
@@ -12,9 +14,9 @@ namespace RottenReviewsWeb.Controllers
         private RestaurantContext db = new RestaurantContext();
 
         // GET: Restaurants
-        public ActionResult Index()
+        public ActionResult Index(int sortType = 0, string sortBy = "Rating")
         {
-            return View(db.Restaurants.ToList());
+            return View(SortedList(sortType, sortBy));
         }
 
         // GET: Restaurants/Details/5
@@ -75,7 +77,7 @@ namespace RottenReviewsWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Street,City,State,Country,Zipcode,Phone,Email,Website,Created,Modified")] Restaurant restaurant)
+        public ActionResult Edit(Restaurant restaurant)
         {
             if (ModelState.IsValid)
             {
@@ -119,6 +121,26 @@ namespace RottenReviewsWeb.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // GET: Restaurants
+        public ActionResult Search(string keyword)
+        {
+            return View("SearchResult", db.Restaurants.WhereAtLeastOneProperty((string s) => s.Contains(keyword) ));
+        }
+
+        [NonAction]
+        private List<Restaurant> SortedList(int sortType, string sortBy)
+        {
+            switch (sortType)
+            {
+                case 1:
+                    return Sorting.SortAscending(db.Restaurants.ToList(), sortBy);
+                case 2:
+                    return Sorting.SortDescending(db.Restaurants.ToList(), sortBy);
+                default:
+                    return db.Restaurants.ToList();
+            }
         }
     }
 }

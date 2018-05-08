@@ -1,25 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RottenReviewsLibrary
 {
-    public class Sorting
+    public static class Sorting
     {
-        public List<T> SortAscending<T>(List<T> list, string attribute="Name")
+        public static List<T> SortAscending<T>(List<T> list, string propertyName)
         {
-            var property = typeof(T).GetProperty(attribute);
-            if (property == null) return new List<T>();
-            return list.OrderBy(item => (string) property.GetValue(item, null)).ToList();
+            PropertyDescriptor prop = TypeDescriptor.GetProperties(typeof(T)).Find(propertyName, true);
+            return list.OrderBy(x => prop.GetValue(x)).ToList();
         }
 
-        public List<T> SortDescending<T>(List<T> list, string attribute = "Name")
+        public static List<T> SortDescending<T>(List<T> list, string propertyName)
         {
-            var property = typeof(T).GetProperty(attribute);
-            if (property == null) return new List<T>();
-            return list.OrderByDescending(item => (string)property.GetValue(item, null)).ToList();
+            PropertyDescriptor prop = TypeDescriptor.GetProperties(typeof(T)).Find(propertyName,true);
+            return list.OrderByDescending(x => prop.GetValue(x)).ToList();
+        }
+
+        public static List<T> Top<T>(List<T> list, int count, string attribute)
+        {
+            return list.Take(count).ToList();
         }
     }
 }

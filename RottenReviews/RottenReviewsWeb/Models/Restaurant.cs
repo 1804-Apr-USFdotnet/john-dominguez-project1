@@ -42,8 +42,8 @@ namespace RottenReviewsWeb.Models
         public virtual ICollection<Review> Reviews { get; set; }
 
         //DateTime
-        public DateTime Created { get; set; }
-        public DateTime? Modified { get; set; }
+        public Nullable<DateTime> Created { get; set; }
+        public Nullable<DateTime> Modified { get; set; }
 
         //Not Mapped
         [NotMapped]

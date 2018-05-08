@@ -101,32 +101,33 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
     @Html.ActionLink("Back to List", "Index")
 </p>
 
 <br />
 
 <h2>Reviews</h2>
+@Html.ActionLink("Add Review", "Create", "Reviews", new { id = Model.ID }, null)
 
-@foreach(var review in Model.Reviews)
-    {
-        <div class="card w-80">
-            <div class="card-body">
-                <h5 class="card-title">@review.Rating Stars</h5>
-                <p>
-                    <blockquote>
-                        @review.Comment
-                        <footer class="blockquote-footer">
-                            @review
-                            <cite title="Post Time">
-                                @review.Created
-                            </cite>
-                        </footer>
-                    </blockquote>
-                </p>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Button</a>
-            </div>
+@foreach (var review in Model.Reviews)
+{
+    <div class="card w-100">
+        <div class="card-body">
+            <h5 class="card-title">@review.Rating Stars</h5>
+            <p>
+                <blockquote>
+                    @review.Comment
+                    <footer class="blockquote-footer">
+                        @review.Author
+                        <cite title="Post Time">
+                            @review.Created
+                        </cite>
+                    </footer>
+                </blockquote>
+            </p>
+            @Html.ActionLink("Edit", "Edit", "Reviews", new { id = review.ID }, new { @class = "btn btn-outline-primary" })
+            @Html.ActionLink("Delete", "Delete", "Reviews", new { id = review.ID }, new { @class = "btn btn-danger" })
         </div>
-    }
+    </div>
+}

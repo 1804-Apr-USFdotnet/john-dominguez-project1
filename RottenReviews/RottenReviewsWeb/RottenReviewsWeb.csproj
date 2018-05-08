@@ -153,28 +153,16 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
-    <Compile Include="DAL\BaseEntity.cs" />
+    <Compile Include="DAL\IEntity.cs" />
     <Compile Include="DAL\IDbContext.cs" />
     <Compile Include="DAL\RestaurantContext.cs" />
     <Compile Include="DAL\RestaurantInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805070220281_test.cs" />
-    <Compile Include="Migrations\201805070220281_test.Designer.cs">
-      <DependentUpon>201805070220281_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805071556265_EditRestaurantValidations.cs" />
-    <Compile Include="Migrations\201805071556265_EditRestaurantValidations.Designer.cs">
-      <DependentUpon>201805071556265_EditRestaurantValidations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805071559438_EditRestaurantValidationsZipcode.cs" />
-    <Compile Include="Migrations\201805071559438_EditRestaurantValidationsZipcode.Designer.cs">
-      <DependentUpon>201805071559438_EditRestaurantValidationsZipcode.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805071923143_EditReviewValidationsAuthor.cs" />
-    <Compile Include="Migrations\201805071923143_EditReviewValidationsAuthor.Designer.cs">
-      <DependentUpon>201805071923143_EditReviewValidationsAuthor.cs</DependentUpon>
+    <Compile Include="Migrations\201805072317148_ChangeDateTimeToNullable.cs" />
+    <Compile Include="Migrations\201805072317148_ChangeDateTimeToNullable.Designer.cs">
+      <DependentUpon>201805072317148_ChangeDateTimeToNullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Restaurant.cs" />
@@ -183,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\addons\normalize.css" />
+    <Content Include="Content\agency.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-minty.min.css" />
@@ -190,6 +179,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -275,6 +265,7 @@
     <Content Include="Views\Reviews\Details.cshtml" />
     <Content Include="Views\Reviews\Edit.cshtml" />
     <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Restaurants\SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -289,18 +280,15 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805070220281_test.resx">
-      <DependentUpon>201805070220281_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805072317148_ChangeDateTimeToNullable.resx">
+      <DependentUpon>201805072317148_ChangeDateTimeToNullable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805071556265_EditRestaurantValidations.resx">
-      <DependentUpon>201805071556265_EditRestaurantValidations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805071559438_EditRestaurantValidationsZipcode.resx">
-      <DependentUpon>201805071559438_EditRestaurantValidationsZipcode.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805071923143_EditReviewValidationsAuthor.resx">
-      <DependentUpon>201805071923143_EditReviewValidationsAuthor.cs</DependentUpon>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RottenReviewsLibrary\RottenReviewsLibrary.csproj">
+      <Project>{99FE64A0-42B1-4405-BB2E-3E0CC889857D}</Project>
+      <Name>RottenReviewsLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

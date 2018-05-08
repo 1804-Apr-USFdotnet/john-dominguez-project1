@@ -7,13 +7,13 @@ namespace RottenReviewsWeb.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class EditRestaurantValidationsZipcode : IMigrationMetadata
+    public sealed partial class ChangeDateTimeToNullable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(EditRestaurantValidationsZipcode));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeDateTimeToNullable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805071559438_EditRestaurantValidationsZipcode"; }
+            get { return "201805072317148_ChangeDateTimeToNullable"; }
         }
         
         string IMigrationMetadata.Source

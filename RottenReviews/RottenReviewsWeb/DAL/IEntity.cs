@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RottenReviewsWeb.DAL
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         DateTime Created { get; set; }
         DateTime? Modified { get; set; }

@@ -25,12 +25,15 @@ namespace RottenReviewsWeb.Models
         [Required(ErrorMessage = "Username is Required")]
         public string Author { get; set; }
 
+        [Required]
+        public int RestaurantID { get; set; }
+
         //Foreign Key
         public virtual Restaurant Restaurant { get; set; }
 
         //DateTime
-        public DateTime Created { get; set; }
-        public DateTime? Modified { get; set; }
+        public Nullable<DateTime> Created { get; set; }
+        public Nullable<DateTime> Modified { get; set; }
 
         //
         public int CompareTo(object obj)
@@ -39,7 +42,7 @@ namespace RottenReviewsWeb.Models
 
             Restaurant otherTemperature = obj as Restaurant;
             if (otherTemperature != null)
-                return this.Created.CompareTo(otherTemperature.Created);
+                return this.Created.Value.CompareTo(otherTemperature.Created.Value);
             else
                 throw new ArgumentException("Object is not a Review");
         }

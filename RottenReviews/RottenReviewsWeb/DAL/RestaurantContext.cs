@@ -10,6 +10,18 @@ using RottenReviewsWeb.Models;
 
 namespace RottenReviewsWeb.DAL
 {
+//    public class Test
+//    {
+//        public static void Main(string[] args)
+//        {
+//            Restaurant r = new Restaurant();
+//            RestaurantContext db = new RestaurantContext();
+//
+//            db.Restaurants.Add(r);
+//            db.SaveChanges();
+//        }
+//    }
+
     public class RestaurantContext : DbContext, IDbContext
     {
         public RestaurantContext() : base("RestaurantContext")
@@ -31,6 +43,7 @@ namespace RottenReviewsWeb.DAL
             AddedEntities.ForEach(E =>
             {
                 E.Property("Created").CurrentValue = DateTime.Now;
+                E.Property("Modified").CurrentValue = DateTime.Now;
             });
 
             var ModifiedEntities = ChangeTracker.Entries().Where(E => E.State == EntityState.Modified).ToList();
@@ -46,24 +59,5 @@ namespace RottenReviewsWeb.DAL
         {
             return base.Set<TEntity>();
         }
-
-//        static void Main(string[] args)
-//        {
-//            Restaurant restaurant = new Restaurant
-//            {
-//                Name = "The Refinery",
-//                Street = "5910 N Florida Ave",
-//                City = "Tampa",
-//                State = "FL",
-//                Zipcode = "33604",
-//                Country = "US",
-//                Phone = "813-234-3710",
-//                Email = "test@test.com",
-//                Website = "http://www.places.singleplatform.com"
-//            };
-//            RestaurantContext db = new RestaurantContext();
-//            db.Restaurants.Add(restaurant);
-//            db.SaveChanges();
-//        }
     }
 }
