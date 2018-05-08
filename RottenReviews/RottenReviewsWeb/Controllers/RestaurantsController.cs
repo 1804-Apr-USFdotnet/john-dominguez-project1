@@ -127,6 +127,7 @@ namespace RottenReviewsWeb.Controllers
         // GET: Restaurants
         public ActionResult Search(string keyword)
         {
+            ViewBag.TopThree = Sorting.Top(Sorting.SortDescending(db.Restaurants.ToList(), "Rating"), 3);
             return View("Index", db.Restaurants.WhereAtLeastOneProperty((string s) => s.Contains(keyword)).ToList());
         }
 
