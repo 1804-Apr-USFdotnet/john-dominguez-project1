@@ -5,24 +5,34 @@
     ViewBag.Title = "Index";
 }
 
+
+
 <h2 class="display-4">Restaurants</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 
+@{
+    var properties = typeof(Restaurant).GetProperties();
+}
+
+@Html.DropDownListFor(m => properties, properties.ToList())
+@Html.ValidationMessageFor(m => m.SelectedFlavorId)
+<input type="submit" value="Submit" />
+
 <table class="table">
     <tr>
         @{
-            var properties = typeof(Restaurant).GetProperties();
+            var properties2 = typeof(Restaurant).GetProperties();
         }
-        @foreach (var property in properties)
+        @foreach (var property in properties2)
         {
             <th>
                 <p>@property.Name</p>
                 <p class="text-center">
-                    @Html.ActionLink("▲", "Index", new {sortType = 1, sortBy = property.Name}, null)
-                    @Html.ActionLink("▼", "Index", new {sortType = 2, sortBy = property.Name}, null)
+                    @Html.ActionLink("▲", "Index", new { sortType = 1, sortBy = property.Name }, null)
+                    @Html.ActionLink("▼", "Index", new { sortType = 2, sortBy = property.Name }, null)
                 </p>
             </th>
         }
@@ -30,7 +40,7 @@
     </tr>
 
     @foreach (var item in Model)
-     {
+    {
         <tr>
             @foreach (var property in properties)
             {
@@ -38,12 +48,12 @@
                     @(property.Name == "Reviews" ? item.Reviews.Count : property.GetValue(item))
                 </td>
             }
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-            @Html.ActionLink("Details", "Details", new { id = item.ID })
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-    </tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
     }
 
 </table>

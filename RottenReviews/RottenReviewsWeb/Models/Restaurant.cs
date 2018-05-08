@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 
 namespace RottenReviewsWeb.Models
@@ -66,5 +68,15 @@ namespace RottenReviewsWeb.Models
             else
                 throw new ArgumentException("Object is not a Restaurant");
         }
+//
+//        public static IEnumerable<string> RestaurantProperties()
+//        {
+//            var properties = typeof(Restaurant).GetProperties();
+//            var prop = new List<string>();
+//            foreach (var VARIABLE in prop)
+//            {
+//                
+//            }
+//        }
     }
 }
