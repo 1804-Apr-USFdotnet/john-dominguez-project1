@@ -118,7 +118,7 @@ namespace RottenReviewsWeb.Controllers
             Review review = db.Reviews.Find(id);
             db.Reviews.Remove(review);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Restaurants", new { id = review.RestaurantID });
         }
 
         protected override void Dispose(bool disposing)

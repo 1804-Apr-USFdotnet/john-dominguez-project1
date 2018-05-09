@@ -26,7 +26,17 @@
     @Html.ActionLink("Edit", "Edit", new {id = Model.ID}, new {@class = "btn btn-outline-secondary"})
     @Html.ActionLink("Delete", "Delete", new {id = Model.ID}, new {@class = "btn btn-danger"})
 </div>
-
+@* Map *@
+<div class="row d-flex my-4">
+    <div class="col-md-10 m-auto">
+        <iframe
+            height="350"
+            frameborder="0" style="border: 0"
+            src="https://www.google.com/maps/embed/v1/search?key=AIzaSyAKr6xR-8JrruZHghR7kC2RVmI8h1Uz_Lw&q=@Model.Street"
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
 
 <h2>Reviews</h2>
 @Html.ActionLink("Add Review", "Create", "Reviews", new {id = Model.ID}, new {@class = "btn btn-outline-primary mb-4"})
